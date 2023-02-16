@@ -1,6 +1,8 @@
 import mysql.connector
 import getpass
 import datetime
+import os
+from datetime import date
 
 # Conexão com o Banco de Dados
 conexao = mysql.connector.connect(
@@ -13,12 +15,16 @@ conexao = mysql.connector.connect(
 cursor = conexao.cursor()
 
 #Inicio Sistema - Tela de login
+data_atual = date.today()
+
 # Cabeçalho do Sistema
-print('--------------------------------------------------------------------------------')
-print('-------------------- Sistema de Controle de Senhas - GRAFEx --------------------')
-print('--------------------------------------------------------------------------------')
-print('--------------------- Seja Bem Vindo - Tela de Autenticação---------------------')
-print('--------------------------------------------------------------------------------')
+print('---------------------------------------------------------------------------------')
+print('-------------------- Sistema de Controle de Senhas - PyVault --------------------')
+print('---------------------------------------------------------------------------------')
+print('--------------------- Seja Bem Vindo - Tela de Autenticação ---------------------')
+print('---------------------------------------------------------------------------------')
+print('------------------------ Você está sendo monitorado! ----------------------------')
+print(f'--------------------------------------------------------------------------------')
 
 #Solicitando Usuário 
 usuario = input('Digite seu usuario: ')
@@ -39,6 +45,7 @@ if usuario == user_formatado:
     senha_formatada = str(autenticacao_resultado_senha)[4:-4]
 
     if senha_usuario == senha_formatada:
+        os.system('cls' if os.name == 'nt' else 'clear')
         print('--------------------------------------------------------------------------------')
         print(f'Seja Bem-vindo, {usuario}!')
         print('--------------------------------------------------------------------------------')
@@ -47,12 +54,12 @@ if usuario == user_formatado:
         print('Menu Principal')
         print('1) Cadastrar novo sistema')
         print('2) Verificar informações de sistema')
-        print('3) Atualizar senha de sistema')
+        print('3) Atualizar informação de sistema')
         opcao_selecionada = input('Selecione umas das opções:')
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         #Modúlo de Cadastro de Sistema
         if (opcao_selecionada == '1'):
-
+            os.system('cls' if os.name == 'nt' else 'clear')
             #Formúlario
             nome_sistema = input('Digite o nome do sistema: ')
             ip_sistema = input('Digite o ip do sistema: ')
@@ -79,6 +86,8 @@ if usuario == user_formatado:
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         #Modúlo de Verificação de Sistema
         elif (opcao_selecionada == '2'):
+
+            os.system('cls' if os.name == 'nt' else 'clear')
             print('Filtros disponíveis: ')
             print('1) Buscar pelo nome ')
             print('2) Buscar pelo ip')
@@ -86,6 +95,7 @@ if usuario == user_formatado:
 
             if (guarda_opcao == '1'):
 
+                os.system('cls' if os.name == 'nt' else 'clear')
                 busca_nome = input('Digite o nome do sistema: ')
 
                 #busca o nome do sistema
@@ -112,6 +122,7 @@ if usuario == user_formatado:
                 query_busca_senha_sistema_resultado = cursor.fetchall()
                 query_busca_senha_sistema_resultado_formatado = str(query_busca_senha_sistema_resultado)[4:-4]
 
+                os.system('cls' if os.name == 'nt' else 'clear')
                 print('--------------------------------------------------------------------------------------------------------------------')
                 print('Aqui estão as seguintes informações:')
                 print('--------------------------------------------------------------------------------------------------------------------')
@@ -123,6 +134,7 @@ if usuario == user_formatado:
 
             elif(guarda_opcao == '2'): 
                  
+                os.system('cls' if os.name == 'nt' else 'clear')
                 busca_ip = input('Digite o ip do sistema: ')
 
                 query_busca_nome_sistema = f'SELECT nome_sistema FROM tb_sistemas WHERE ip_sistema LIKE "%{busca_ip}%" LIMIT 1'
@@ -148,6 +160,7 @@ if usuario == user_formatado:
                 query_busca_senha_sistema_resultado = cursor.fetchall()
                 query_busca_senha_sistema_resultado_formatado = str(query_busca_senha_sistema_resultado)[4:-4]
 
+                os.system('cls' if os.name == 'nt' else 'clear')
                 print('--------------------------------------------------------------------------------------------------------------------')
                 print('Aqui estão as seguintes informações:')
                 print('--------------------------------------------------------------------------------------------------------------------')
@@ -160,8 +173,9 @@ if usuario == user_formatado:
                 print('Opção Inválida!')
         #Fim Módulo de Verificação de Sistema 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         #Modúlo de Atualização de Sistema
         elif (opcao_selecionada == '3'):
-             print('Consultar')
+             print('atualizar')
         elif (opcao_selecionada == '4'):
              print('sei la')
         else:
