@@ -56,29 +56,62 @@ if usuario == user_formatado:
         query_busca_tipo_usuario_resultado = cursor.fetchall()
         query_busca_tipo_usuario_resultado_formatado = str(query_busca_tipo_usuario_resultado)[3:-4]
 
-    
+        print('')
         print('Menu Principal')
+        print('')
         print('1) Cadastrar novo sistema')
         print('2) Verificar informações de sistema')
         print('3) Atualizar informação de sistema')   
         print('4) Exclusão de sistema')
         print('5) Cadastro de Usuário')
         print('6) Exclusão de Usuário')
+        print('')
         opcao_selecionada = input('Selecione umas das opções:')
         
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         #Modúlo de Cadastro de Sistema''
         if (opcao_selecionada == '1'):
+            
             os.system('cls' if os.name == 'nt' else 'clear')
-            #Formúlario
+            print('--------------------------------------------------------------------------------------------------------------------')
+            print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+            print('--------------------------------------------------------------------------------------------------------------------')
             nome_sistema = input('Digite o nome do sistema: ')
+
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print('--------------------------------------------------------------------------------------------------------------------')
+            print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+            print('--------------------------------------------------------------------------------------------------------------------')
             ip_sistema = input('Digite o ip do sistema: ')
+
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print('--------------------------------------------------------------------------------------------------------------------')
+            print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+            print('--------------------------------------------------------------------------------------------------------------------')
             usuario_sistema = input('Digite o nome do usuario: ')
+
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print('--------------------------------------------------------------------------------------------------------------------')
+            print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+            print('--------------------------------------------------------------------------------------------------------------------')
             senha_sistema = getpass.getpass('Digite a senha do sistema: ')
 
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print('--------------------------------------------------------------------------------------------------------------------')
+            print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+            print('--------------------------------------------------------------------------------------------------------------------')
+            print('')
+            print('Tipos do sistema: ')
+            print('1) Sistema Web')
+            print('2) Sistema')
+            print('3) Máquina Virtual')
+            print('4) Servidor')
+            print('')
+            tipo_sistema = input('Digite o tipo do sistema: ')
+            
             #Executando o cadastro do sistema
-            cadastra_sistema = f'CALL sp_insert_sistema ("{nome_sistema}", "{ip_sistema}", "{usuario_sistema}" , "{senha_sistema}")'
+            cadastra_sistema = f'CALL sp_insert_sistema ("{nome_sistema}", "{ip_sistema}", "{usuario_sistema}" , "{senha_sistema}", "{tipo_sistema}")'
             cursor.execute(cadastra_sistema) 
             conexao.commit()
 
@@ -89,9 +122,18 @@ if usuario == user_formatado:
             valida_formatado = str(autenticacao_resultado_cad_sis)[3:-4]
 
             if valida_formatado == ip_sistema:
-                    print('Sistema cadastrado com sucesso!')
+                     
+                     os.system('cls' if os.name == 'nt' else 'clear')
+                     print('--------------------------------------------------------------------------------------------------------------------')
+                     print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+                     print('--------------------------------------------------------------------------------------------------------------------')
+                     print('Sistema cadastrado com sucesso!')
             else:
-                    print(valida_formatado)
+                    
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+                    print('--------------------------------------------------------------------------------------------------------------------')
                     print('Erro no cadastro, tente novamente!')
         #Fim Modúlo de Cadastro de Sistema 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -99,14 +141,23 @@ if usuario == user_formatado:
         elif (opcao_selecionada == '2'):
 
             os.system('cls' if os.name == 'nt' else 'clear')
+            print('--------------------------------------------------------------------------------------------------------------------')
+            print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+            print('--------------------------------------------------------------------------------------------------------------------')
+            print('')
             print('Filtros disponíveis: ')
+            print('')
             print('1) Buscar pelo nome ')
             print('2) Buscar pelo ip')
+            print('')
             guarda_opcao = input('Selecione uma das opções:  ')
 
             if (guarda_opcao == '1'):
-
+                
                 os.system('cls' if os.name == 'nt' else 'clear')
+                print('--------------------------------------------------------------------------------------------------------------------')
+                print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+                print('--------------------------------------------------------------------------------------------------------------------')
                 busca_nome = input('Digite o nome do sistema: ')
 
                 #busca o nome do sistema
@@ -135,8 +186,11 @@ if usuario == user_formatado:
 
                 os.system('cls' if os.name == 'nt' else 'clear')
                 print('--------------------------------------------------------------------------------------------------------------------')
-                print('Aqui estão as seguintes informações:')
+                print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
                 print('--------------------------------------------------------------------------------------------------------------------')
+                print('')
+                print('Aqui estão as informações do sistema: ')
+                print('')
                 print(f'Nome do Sistema: {query_busca_nome_sistema_resultado_formatado}')
                 print(f'Ip do Sistema: {query_busca_ip_sistema_resultado_formatado}')
                 print(f'Usuário do Sistema: {query_busca_usuario_sistema_resultado_formatado}')
@@ -146,6 +200,10 @@ if usuario == user_formatado:
             elif(guarda_opcao == '2'): 
                  
                 os.system('cls' if os.name == 'nt' else 'clear')
+                print('--------------------------------------------------------------------------------------------------------------------')
+                print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+                print('--------------------------------------------------------------------------------------------------------------------')
+                print('') 
                 busca_ip = input('Digite o ip do sistema: ')
 
                 query_busca_nome_sistema = f'SELECT nome_sistema FROM tb_sistemas WHERE ip_sistema LIKE "%{busca_ip}%" LIMIT 1'
@@ -173,25 +231,34 @@ if usuario == user_formatado:
 
                 os.system('cls' if os.name == 'nt' else 'clear')
                 print('--------------------------------------------------------------------------------------------------------------------')
-                print('Aqui estão as seguintes informações:')
+                print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
                 print('--------------------------------------------------------------------------------------------------------------------')
+                print('')
+                print('Aqui estão as informações do sistema: ')
+                print('')
                 print(f'Nome do Sistema: {query_busca_nome_sistema_resultado_formatado}')
                 print(f'Ip do Sistema: {query_busca_ip_sistema_resultado_formatado}')
                 print(f'Usuário do Sistema: {query_busca_usuario_sistema_resultado_formatado}')
                 print(f'Senha do Sistema: {query_busca_senha_sistema_resultado_formatado}')
 
             else:
+                os.system('cls' if os.name == 'nt' else 'clear')
+                print('--------------------------------------------------------------------------------------------------------------------')
+                print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+                print('--------------------------------------------------------------------------------------------------------------------')
                 print('Opção Inválida!')
         #Fim Módulo de Verificação de Sistema 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
          #Modúlo de Atualização de Sistema
         elif (opcao_selecionada == '3'):
+            
             print('--------------------------------------------------------------------------------------------------------------------')
             print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
             print('--------------------------------------------------------------------------------------------------------------------')
-
+            print('')
             print('1) Buscar pelo nome:  ')
             print('2) Buscar pelo Ip: ')
+            print('')
             guarda_opcao_a = input('Selecione o parametrô de busca:')
 
             if (guarda_opcao_a == '1'):
@@ -199,6 +266,7 @@ if usuario == user_formatado:
                  print('--------------------------------------------------------------------------------------------------------------------')
                  print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
                  print('--------------------------------------------------------------------------------------------------------------------')
+                 print('')
                  pede_nome = input('Insira o nome do sistema que deseja atualizar a informação: ')
                  qyery_busca_sistema_nome = f'SELECT nome_sistema FROM tb_sistemas WHERE nome_sistema LIKE "%{pede_nome}%"'
                  cursor.execute(qyery_busca_sistema_nome)
@@ -209,42 +277,54 @@ if usuario == user_formatado:
                  print('--------------------------------------------------------------------------------------------------------------------')
                  print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
                  print('--------------------------------------------------------------------------------------------------------------------')
-
+                 print('')
+                 print('Selecione o parametrô que deseja atualizar: ')
+                 print('')
                  print('1) Atualizar nome do sistema: ')
                  print('2) Atualizar ip do sistema: ')
                  print('3) Atualizar usuário do sistema: ')
                  print('4) Atualizar senha do sistema: ')
+                 print('')
                  guarda_parametro_atualizacao = input('Selecione o parametrô que deseja atualizar: ')
                 
                  if (guarda_parametro_atualizacao == '1'):
+                    
                     os.system('cls' if os.name == 'nt' else 'clear')
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
                     print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
                     guarda_parametro_atualizacao_novo_nome = input('Informe o novo nome do sistema: ') 
 
                     atualiza_nome = f'UPDATE tb_sistemas SET nome_sistema = "{guarda_parametro_atualizacao_novo_nome}" WHERE  nome_sistema = "{qyery_busca_sistema_nome_resultado_formatado}"'
                     cursor.execute(atualiza_nome)
                     conexao.commit()
-
-                    # query_confirma_atualizacao_nome = f'SELECT nome_sistema FROM tb_sistemas WHERE nome_sistema = "{guarda_parametro_atualizacao_novo_nome}"'
-                    # cursor.execute(query_confirma_atualizacao_nome)
-                    # query_confirma_atualizacao_nome_resultado = cursor.fetchall()
-                    # query_confirma_atualizacao_nome_resultado_formatado = str(qyery_busca_sistema_nome_resultado)[3:-4]
                     
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
                     print('Atualização realizada com sucesso!')
 
                  elif (guarda_parametro_atualizacao == '2'):
                     
+                    os.system('cls' if os.name == 'nt' else 'clear')
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
                     print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
                     guarda_parametro_atualizacao_novo_ip = input('Informe o novo ip do sistema: ')
 
                     atualiza_ip = f'UPDATE tb_sistemas SET ip_sistema = "{guarda_parametro_atualizacao_novo_ip}" WHERE nome_sistema = "{qyery_busca_sistema_nome_resultado_formatado}"'
                     cursor.execute(atualiza_ip)
                     conexao.commit()
-
+                    
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
                     print('Atualização realizada com sucesso!')
 
                  elif (guarda_parametro_atualizacao == '3'):
@@ -252,25 +332,44 @@ if usuario == user_formatado:
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
                     print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
                     guarda_parametro_atualizacao_novo_usuario = input('Informe o novo nome do usuário sistema: ')
 
                     atualiza_usuario = f'UPDATE tb_sistemas SET usuario_sistema = "{guarda_parametro_atualizacao_novo_usuario}" WHERE nome_sistema = "{qyery_busca_sistema_nome_resultado_formatado}"'
                     cursor.execute(atualiza_usuario)
                     conexao.commit()
 
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
                     print('Atualização realizada com sucesso!')
 
                  elif (guarda_parametro_atualizacao == '4'):
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
                     print('--------------------------------------------------------------------------------------------------------------------')
-                    guarda_parametro_atualizacao_nova_senha = input('Informe a nova senha sistema: ')
+                    print('')
+                    guarda_parametro_atualizacao_nova_senha = getpass.getpass('Informe a nova senha sistema: ')
                     
                     atualiza_senha = f'UPDATE tb_sistemas SET senha_sistema = "{guarda_parametro_atualizacao_nova_senha}" WHERE nome_sistema = "{qyery_busca_sistema_nome_resultado_formatado}"'
                     cursor.execute(atualiza_senha)
                     conexao.commit()
 
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
+                    print('Atualização realizada com sucesso!')
+
                  else:
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
                     print('Parametrô inválido!')
                    
 
@@ -279,6 +378,7 @@ if usuario == user_formatado:
                  print('--------------------------------------------------------------------------------------------------------------------')
                  print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
                  print('--------------------------------------------------------------------------------------------------------------------')
+                 print('')
                  pede_ip = input('Insira o ip do sistema que deseja atualizar a informação: ')
                  qyery_busca_sistema_ip = f'SELECT ip_sistema FROM tb_sistemas WHERE ip_sistema = "{pede_ip}"'
                  cursor.execute(qyery_busca_sistema_ip)
@@ -289,79 +389,366 @@ if usuario == user_formatado:
                  print('--------------------------------------------------------------------------------------------------------------------')
                  print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
                  print('--------------------------------------------------------------------------------------------------------------------')
-
+                 print('')
                  print('1) Atualizar nome do sistema: ')
                  print('2) Atualizar ip do sistema: ')
                  print('3) Atualizar usuário do sistema: ')
                  print('4) Atualizar senha do sistema: ')
+                 print('')
                  guarda_parametro_atualizacao = input('Selecione o parametrô que deseja atualizar: ')
                 
                  if (guarda_parametro_atualizacao == '1'):
+                    
                     os.system('cls' if os.name == 'nt' else 'clear')
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
                     print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
                     guarda_parametro_atualizacao_novo_nome = input('Informe o novo nome do sistema: ') 
 
                     atualiza_nome = f'UPDATE tb_sistemas SET nome_sistema = "{guarda_parametro_atualizacao_novo_nome}" WHERE  ip_sistema = "{qyery_busca_sistema_ip_resultado_formatado}"'
                     cursor.execute(atualiza_nome)
                     conexao.commit()
 
-                    # query_confirma_atualizacao_nome = f'SELECT nome_sistema FROM tb_sistemas WHERE nome_sistema = "{guarda_parametro_atualizacao_novo_nome}"'
-                    # cursor.execute(query_confirma_atualizacao_nome)
-                    # query_confirma_atualizacao_nome_resultado = cursor.fetchall()
-                    # query_confirma_atualizacao_nome_resultado_formatado = str(qyery_busca_sistema_nome_resultado)[3:-4]
-                    
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
                     print('Atualização realizada com sucesso!')
 
                  elif (guarda_parametro_atualizacao == '2'):
                     
+                    os.system('cls' if os.name == 'nt' else 'clear')
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
                     print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
                     guarda_parametro_atualizacao_novo_ip = input('Informe o novo ip do sistema: ')
 
                     atualiza_ip = f'UPDATE tb_sistemas SET ip_sistema = "{guarda_parametro_atualizacao_novo_ip}" WHERE ip_sistema = "{qyery_busca_sistema_ip_resultado_formatado}"'
                     cursor.execute(atualiza_ip)
                     conexao.commit()
 
-                    print('Atualização realizada com sucesso!')
-
-                 elif (guarda_parametro_atualizacao == '3'):
                     os.system('cls' if os.name == 'nt' else 'clear')
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
                     print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
+                    print('Atualização realizada com sucesso!')
+
+                 elif (guarda_parametro_atualizacao == '3'):
+                    
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
                     guarda_parametro_atualizacao_novo_usuario = input('Informe o novo nome do usuário sistema: ')
 
                     atualiza_usuario = f'UPDATE tb_sistemas SET usuario_sistema = "{guarda_parametro_atualizacao_novo_usuario}" WHERE ip_sistema = "{qyery_busca_sistema_ip_resultado_formatado}"'
                     cursor.execute(atualiza_usuario)
                     conexao.commit()
-
-                    print('Atualização realizada com sucesso!')
-
-                 elif (guarda_parametro_atualizacao == '4'):
+                   
+                    os.system('cls' if os.name == 'nt' else 'clear')
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
                     print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
+                    print('Atualização realizada com sucesso!')
+
+                 elif (guarda_parametro_atualizacao == '4'):
+                    
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
                     guarda_parametro_atualizacao_nova_senha = input('Informe a nova senha sistema: ')
                     
                     atualiza_senha = f'UPDATE tb_sistemas SET senha_sistema = "{guarda_parametro_atualizacao_nova_senha}" WHERE ip_sistema = "{qyery_busca_sistema_ip_resultado_formatado}"'
                     cursor.execute(atualiza_senha)
                     conexao.commit()
 
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
+                    print('Atualização realizada com sucesso!')
+
+
                  else:
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
+                    print('--------------------------------------------------------------------------------------------------------------------')
+                    print('')
+
                     print('Parametrô inválido!')
                    
             else:
-                print('Parametrô inválido!')
+                os.system('cls' if os.name == 'nt' else 'clear')
+                print('--------------------------------------------------------------------------------------------------------------------')
+                print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
+                print('--------------------------------------------------------------------------------------------------------------------')
+                print('')
+                print('Atualização realizada com sucesso!')
+
 
 # Fim do Modúlo de Atualização de Sistema
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Início do Modúlo de Exclusão de Sistema - Administrador
-        elif (opcao_selecionada == '4'):
-             #Modúlo de Exclusão de sistema
-             print('sei la')
+        elif (opcao_selecionada == '4') and (query_busca_tipo_usuario_resultado_formatado == 'Administrador'):
+            
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print('--------------------------------------------------------------------------------------------------------------------')
+            print('--------------------------------------- Modúlo de Exclusão de Sistemas ---------------------------------------------')
+            print('--------------------------------------------------------------------------------------------------------------------')
+            print('')
+            print('1) Busca o sistema pelo nome')
+            print('2) Buscar o sistema pelo ip')
+            print('')
+            guarda_opcao_e = input('Selecione o método de busca: ')
+
+            if (guarda_opcao_e == '1'):
+
+               os.system('cls' if os.name == 'nt' else 'clear')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('--------------------------------------- Modúlo de Exclusão de Sistemas ---------------------------------------------')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('')
+               guarda_informacao_e_nome = input('Informe o nome do sistema que deseja excluir: ')
+
+               query_busca_exclu_sis_nome = f'SELECT * FROM tb_sistemas WHERE nome_sistema = "{guarda_informacao_e_nome}"'
+               cursor.execute(query_busca_exclu_sis_nome)
+               query_busca_exclu_sis_nome_resultado = cursor.fetchall()
+               query_busca_exclu_sis_nome_resultado_formatado = str(query_busca_exclu_sis_nome_resultado)
+
+               os.system('cls' if os.name == 'nt' else 'clear')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('--------------------------------------- Modúlo de Exclusão de Sistemas ---------------------------------------------')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('')
+               print(query_busca_exclu_sis_nome_resultado_formatado) 
+               print('')
+               guarda_confirmacao_exclusao = input('Deseja realmente excluir esse sistema? Se sim digite "s" se deseja cancelar essa operação digite "n": ')
+
+               if (guarda_confirmacao_exclusao == 's'):
+                   
+                   os.system('cls' if os.name == 'nt' else 'clear')
+                   print('--------------------------------------------------------------------------------------------------------------------')
+                   print('--------------------------------------- Modúlo de Exclusão de Sistemas ---------------------------------------------')
+                   print('--------------------------------------------------------------------------------------------------------------------')
+                   print('')
+                   query_exclusao_confirmada = f'DELETE FROM tb_sistemas WHERE nome_sistema = "{guarda_informacao_e_nome}"'
+                   cursor.execute(query_exclusao_confirmada)
+                   conexao.commit()
+
+                   os.system('cls' if os.name == 'nt' else 'clear')
+
+                   print('--------------------------------------------------------------------------------------------------------------------')
+                   print('--------------------------------------- Modúlo de Exclusão de Sistemas ---------------------------------------------')
+                   print('--------------------------------------------------------------------------------------------------------------------')
+                   print('')
+                   print('A exclusão foi realizada com sucesso!')
+                   
+
+               elif (guarda_confirmacao_exclusao == 'n'):
+                   
+                   os.system('cls' if os.name == 'nt' else 'clear')
+                   print('--------------------------------------------------------------------------------------------------------------------')
+                   print('--------------------------------------- Modúlo de Exclusão de Sistemas ---------------------------------------------')
+                   print('--------------------------------------------------------------------------------------------------------------------')
+                   print('')
+                   print('Operação cancelada!')
+
+               else:
+
+                  os.system('cls' if os.name == 'nt' else 'clear')
+                  print('--------------------------------------------------------------------------------------------------------------------')
+                  print('--------------------------------------- Modúlo de Exclusão de Sistemas ---------------------------------------------')
+                  print('--------------------------------------------------------------------------------------------------------------------')
+                  print('')
+                  print('Opção inválida!')
+
+            elif (guarda_opcao_e == '2'):
+
+               os.system('cls' if os.name == 'nt' else 'clear')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('--------------------------------------- Modúlo de Exclusão de Sistemas ---------------------------------------------')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('')
+               guarda_informacao_e_ip = input('Informe o ip do sistema que deseja excluir: ')
+
+               query_busca_exclu_sis_ip = f'SELECT * FROM tb_sistemas WHERE ip_sistema = "{guarda_informacao_e_ip}"'
+               cursor.execute(query_busca_exclu_sis_ip)
+               query_busca_exclu_sis_ip_resultado = cursor.fetchall()
+               query_busca_exclu_sis_ip_resultado_formatado = str(query_busca_exclu_sis_ip_resultado)
+
+               os.system('cls' if os.name == 'nt' else 'clear')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('--------------------------------------- Modúlo de Exclusão de Sistemas ---------------------------------------------')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('')
+               print(query_busca_exclu_sis_ip_resultado_formatado) 
+               print('')
+               guarda_confirmacao_exclusao = input('Deseja realmente excluir esse sistema? Se sim digite "s" se deseja cancelar essa operação digite "n": ')
+
+               if (guarda_confirmacao_exclusao == 's'):
+
+                   os.system('cls' if os.name == 'nt' else 'clear')
+                   print('--------------------------------------------------------------------------------------------------------------------')
+                   print('--------------------------------------- Modúlo de Exclusão de Sistemas ---------------------------------------------')
+                   print('--------------------------------------------------------------------------------------------------------------------')
+                   print('')
+                   query_exclusao_confirmada = f'DELETE FROM tb_sistemas WHERE ip_sistema = "{guarda_informacao_e_ip}"'
+                   cursor.execute(query_exclusao_confirmada)
+                   conexao.commit()
+
+                   os.system('cls' if os.name == 'nt' else 'clear')
+                   print('--------------------------------------------------------------------------------------------------------------------')
+                   print('--------------------------------------- Modúlo de Exclusão de Sistemas ---------------------------------------------')
+                   print('--------------------------------------------------------------------------------------------------------------------')
+                   print('')
+                   print('A exclusão foi realizada com sucesso!')
+                   
+
+               elif (guarda_confirmacao_exclusao == 'n'):
+                   
+                   os.system('cls' if os.name == 'nt' else 'clear')
+                   print('--------------------------------------------------------------------------------------------------------------------')
+                   print('--------------------------------------- Modúlo de Exclusão de Sistemas ---------------------------------------------')
+                   print('--------------------------------------------------------------------------------------------------------------------')
+                   print('')
+                   print('Operação cancelada!')
+
+               else:
+
+                  os.system('cls' if os.name == 'nt' else 'clear')
+                  print('--------------------------------------------------------------------------------------------------------------------')
+                  print('--------------------------------------- Modúlo de Exclusão de Sistemas ---------------------------------------------')
+                  print('--------------------------------------------------------------------------------------------------------------------')
+                  print('')
+                  print('Opção inválida!')
+
+            else:
+                os.system('cls' if os.name == 'nt' else 'clear')
+                print('--------------------------------------------------------------------------------------------------------------------')
+                print('--------------------------------------- Modúlo de Exclusão de Sistemas ---------------------------------------------')
+                print('--------------------------------------------------------------------------------------------------------------------')
+                print('')
+                print('Opção inválida!')
+
+# Fim do modúlo de exclusão de sistemas
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
+# Início do modúlo de Cadastro de Usuário      
+        elif (opcao_selecionada == '5') and (query_busca_tipo_usuario_resultado_formatado == 'Administrador'):    
+            
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print('--------------------------------------------------------------------------------------------------------------------')
+            print('--------------------------------------- Modúlo de Cadastro de Usuários ---------------------------------------------')
+            print('--------------------------------------------------------------------------------------------------------------------')
+            print('')
+            guarda_nome_cadastro = input('Insira o nome do usuário:  ')
+            guarda_senha_usuario = getpass.getpass('Insira a senha do usuário:  ')
+            guarda_senha_confir = getpass.getpass('Insira  a senha do usuário novamente:  ')
+
+            if (guarda_senha_usuario == guarda_senha_confir):
+               
+               guarda_tipo_usuário = input('Insira o tipo do usuário: "Administrador" ou "Usuário"')
+
+               query_insert_usuario = f'INSERT INTO tb_usuarios (nome_usuario, senha_usuario, tipo_usuario) VALUES ("{guarda_nome_cadastro}", "{guarda_senha_usuario}", "{guarda_tipo_usuário}")'
+               cursor.execute(query_insert_usuario)
+               conexao.commit()
+
+               os.system('cls' if os.name == 'nt' else 'clear')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('--------------------------------------- Modúlo de Cadastro de Usuários ---------------------------------------------')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('')
+               print(f'Usuário {guarda_nome_cadastro} foi cadastrado com sucesso!')
+
+            else:
+               os.system('cls' if os.name == 'nt' else 'clear')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('--------------------------------------- Modúlo de Cadastro de Usuários ---------------------------------------------')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('')
+               print('A senhas não coincidem iguais!')
+# Fim Modúlo de Cadastro Usuário
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Início do Modúlo de Exclusão de Usuário
+        elif (opcao_selecionada == '6') and (query_busca_tipo_usuario_resultado_formatado == 'Administrador'):
+            
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print('--------------------------------------------------------------------------------------------------------------------')
+            print('--------------------------------------- Modúlo de Exclusão de Usuários ---------------------------------------------')
+            print('--------------------------------------------------------------------------------------------------------------------')
+            print('')
+            guarda_nome_usuario_exclu = input('Insira o nome do usuário que deseja excluir: ')
+
+            query_busca_usuario_exclu = f'SELECT * FROM tb_usuarios WHERE nome_usuario = "{guarda_nome_usuario_exclu}"'
+            cursor.execute(query_busca_usuario_exclu)
+            query_busca_usuario_exclu_resultado = cursor.fetchall()
+            query_busca_usuario_exclu_resultado_formatado = str(query_busca_usuario_exclu_resultado)
+
+            query_valida_usuario = f'SELECT nome_usuario FROM tb_usuarios WHERE nome_usuario = "{guarda_nome_usuario_exclu}"'
+            cursor.execute(query_valida_usuario)
+            query_valida_usuario_resultado = cursor.fetchall()
+            query_valida_usuario_resultado_formatado = str(query_valida_usuario_resultado)[3:-4]
+
+            if (query_valida_usuario_resultado_formatado == guarda_nome_usuario_exclu):
+
+               os.system('cls' if os.name == 'nt' else 'clear')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('--------------------------------------- Modúlo de Exclusão de Usuários ---------------------------------------------')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('')
+               print(query_busca_usuario_exclu_resultado_formatado)
+               print('')
+               confirmacao_exclusao_usuario = input('Tem certeza que deseja excluir este usuário? Digite "s" para sim e "n" para não.')
+
+               if (confirmacao_exclusao_usuario == "s"):
+                  
+                  query_delete_usuario = f'DELETE FROM tb_usuarios WHERE nome_usuario = "{guarda_nome_usuario_exclu}"'
+                  cursor.execute(query_delete_usuario)
+                  conexao.commit()
+
+                  os.system('cls' if os.name == 'nt' else 'clear')
+                  print('--------------------------------------------------------------------------------------------------------------------')
+                  print('--------------------------------------- Modúlo de Exclusão de Usuários ---------------------------------------------')
+                  print('--------------------------------------------------------------------------------------------------------------------')
+                  print('')
+                  print(f'O usuário {guarda_nome_usuario_exclu} foi excluído com sucesso!')
+
+               elif (confirmacao_exclusao_usuario == "n"):
+                  
+                  os.system('cls' if os.name == 'nt' else 'clear')
+                  print('--------------------------------------------------------------------------------------------------------------------')
+                  print('--------------------------------------- Modúlo de Exclusão de Usuários ---------------------------------------------')
+                  print('--------------------------------------------------------------------------------------------------------------------')
+                  print('')
+                  print('Operação cancelada')
+                  
+               else:
+                  
+                  os.system('cls' if os.name == 'nt' else 'clear')
+                  print('--------------------------------------------------------------------------------------------------------------------')
+                  print('--------------------------------------- Modúlo de Exclusão de Usuários ---------------------------------------------')
+                  print('--------------------------------------------------------------------------------------------------------------------')
+                  print('')
+                  print('Opção Inválida')
+
+            else:
+               os.system('cls' if os.name == 'nt' else 'clear')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('--------------------------------------- Modúlo de Exclusão de Usuários ---------------------------------------------')
+               print('--------------------------------------------------------------------------------------------------------------------')
+               print('')
+               print('Usuário não encontrado!')
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         #Menu principal - Caso não tenha escolhido nenhuma das opções
         else:
             print('Opção inválida!')
 
