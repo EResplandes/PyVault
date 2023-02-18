@@ -115,6 +115,13 @@ if usuario == user_formatado:
             cursor.execute(cadastra_sistema) 
             conexao.commit()
 
+            #Inserir Log de Cadastro
+            mensagem = f'O usuário {usuario} cadastrou um novo sistema: {nome_sistema}!'
+
+            insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+            cursor.execute(insert_log_cadastro)
+            conexao.commit()
+
             #Verificando se o cadastro foi realizado com sucesso
             valida_cadastro_sistema = f'SELECT ip_sistema FROM tb_sistemas WHERE ip_sistema = "{ip_sistema}" LIMIT 1'
             cursor.execute(valida_cadastro_sistema)
@@ -197,6 +204,12 @@ if usuario == user_formatado:
                 print(f'Senha do Sistema: {query_busca_senha_sistema_resultado_formatado}')
 
 
+               #Inserir Log de Cadastro
+                mensagem = f'O {usuario} buscou as informações do sistema: {busca_nome}!'
+                insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+                cursor.execute(insert_log_cadastro)
+                conexao.commit()
+
             elif(guarda_opcao == '2'): 
                  
                 os.system('cls' if os.name == 'nt' else 'clear')
@@ -240,6 +253,12 @@ if usuario == user_formatado:
                 print(f'Ip do Sistema: {query_busca_ip_sistema_resultado_formatado}')
                 print(f'Usuário do Sistema: {query_busca_usuario_sistema_resultado_formatado}')
                 print(f'Senha do Sistema: {query_busca_senha_sistema_resultado_formatado}')
+                
+                #Inserir Log de Cadastro
+                mensagem = f'O {usuario} buscou as informações do sistema: {busca_ip}!'
+                insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+                cursor.execute(insert_log_cadastro)
+                conexao.commit()
 
             else:
                 os.system('cls' if os.name == 'nt' else 'clear')
@@ -300,6 +319,13 @@ if usuario == user_formatado:
                     cursor.execute(atualiza_nome)
                     conexao.commit()
                     
+                    #Inserir Log de Cadastro
+                    mensagem = f'O {usuario} atualizou o nome do sistema: {qyery_busca_sistema_nome_resultado_formatado} para {guarda_parametro_atualizacao_novo_nome}!'
+
+                    insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+                    cursor.execute(insert_log_cadastro)
+                    conexao.commit()
+
                     os.system('cls' if os.name == 'nt' else 'clear')
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
@@ -318,6 +344,13 @@ if usuario == user_formatado:
 
                     atualiza_ip = f'UPDATE tb_sistemas SET ip_sistema = "{guarda_parametro_atualizacao_novo_ip}" WHERE nome_sistema = "{qyery_busca_sistema_nome_resultado_formatado}"'
                     cursor.execute(atualiza_ip)
+                    conexao.commit()
+
+                    #Inserir Log de Cadastro
+                    mensagem = f'O {usuario} atualizou o ip do sistema: {qyery_busca_sistema_nome_resultado_formatado} para {guarda_parametro_atualizacao_novo_ip}!'
+                    
+                    insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+                    cursor.execute(insert_log_cadastro)
                     conexao.commit()
                     
                     os.system('cls' if os.name == 'nt' else 'clear')
@@ -338,6 +371,14 @@ if usuario == user_formatado:
                     atualiza_usuario = f'UPDATE tb_sistemas SET usuario_sistema = "{guarda_parametro_atualizacao_novo_usuario}" WHERE nome_sistema = "{qyery_busca_sistema_nome_resultado_formatado}"'
                     cursor.execute(atualiza_usuario)
                     conexao.commit()
+                   
+                    #Logs
+                    mensagem = f'O {usuario} atualizou o usuario do sistema: {qyery_busca_sistema_nome_resultado_formatado} para {guarda_parametro_atualizacao_novo_usuario}!'
+                    
+                    insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+                    cursor.execute(insert_log_cadastro)
+                    conexao.commit()
+
 
                     os.system('cls' if os.name == 'nt' else 'clear')
                     print('--------------------------------------------------------------------------------------------------------------------')
@@ -355,6 +396,13 @@ if usuario == user_formatado:
                     
                     atualiza_senha = f'UPDATE tb_sistemas SET senha_sistema = "{guarda_parametro_atualizacao_nova_senha}" WHERE nome_sistema = "{qyery_busca_sistema_nome_resultado_formatado}"'
                     cursor.execute(atualiza_senha)
+                    conexao.commit()
+
+                    #Logs
+                    mensagem = f'O {usuario} atualizou a senha do sistema: {qyery_busca_sistema_nome_resultado_formatado} para {guarda_parametro_atualizacao_nova_senha}!'
+                    
+                    insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+                    cursor.execute(insert_log_cadastro)
                     conexao.commit()
 
                     os.system('cls' if os.name == 'nt' else 'clear')
@@ -410,6 +458,13 @@ if usuario == user_formatado:
                     cursor.execute(atualiza_nome)
                     conexao.commit()
 
+                    #Logs
+                    mensagem = f'O {usuario} atualizou o nome do sistema: {pede_ip} para {guarda_parametro_atualizacao_novo_nome}!'
+                    
+                    insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+                    cursor.execute(insert_log_cadastro)
+                    conexao.commit()
+
                     os.system('cls' if os.name == 'nt' else 'clear')
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
@@ -428,6 +483,13 @@ if usuario == user_formatado:
 
                     atualiza_ip = f'UPDATE tb_sistemas SET ip_sistema = "{guarda_parametro_atualizacao_novo_ip}" WHERE ip_sistema = "{qyery_busca_sistema_ip_resultado_formatado}"'
                     cursor.execute(atualiza_ip)
+                    conexao.commit()
+
+                    #Logs
+                    mensagem = f'O {usuario} atualizou o ip do sistema: {pede_ip} para {guarda_parametro_atualizacao_novo_ip}!'
+                    
+                    insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+                    cursor.execute(insert_log_cadastro)
                     conexao.commit()
 
                     os.system('cls' if os.name == 'nt' else 'clear')
@@ -449,6 +511,13 @@ if usuario == user_formatado:
                     atualiza_usuario = f'UPDATE tb_sistemas SET usuario_sistema = "{guarda_parametro_atualizacao_novo_usuario}" WHERE ip_sistema = "{qyery_busca_sistema_ip_resultado_formatado}"'
                     cursor.execute(atualiza_usuario)
                     conexao.commit()
+
+                    #Logs
+                    mensagem = f'O {usuario} atualizou o usuario do sistema: {pede_ip} para {guarda_parametro_atualizacao_novo_usuario}!'
+                    
+                    insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+                    cursor.execute(insert_log_cadastro)
+                    conexao.commit()
                    
                     os.system('cls' if os.name == 'nt' else 'clear')
                     print('--------------------------------------------------------------------------------------------------------------------')
@@ -469,6 +538,14 @@ if usuario == user_formatado:
                     atualiza_senha = f'UPDATE tb_sistemas SET senha_sistema = "{guarda_parametro_atualizacao_nova_senha}" WHERE ip_sistema = "{qyery_busca_sistema_ip_resultado_formatado}"'
                     cursor.execute(atualiza_senha)
                     conexao.commit()
+
+                    #Logs
+                    mensagem = f'O {usuario} atualizou a senha do sistema: {pede_ip} para {guarda_parametro_atualizacao_nova_senha}!'
+                    
+                    insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+                    cursor.execute(insert_log_cadastro)
+                    conexao.commit()
+
 
                     os.system('cls' if os.name == 'nt' else 'clear')
                     print('--------------------------------------------------------------------------------------------------------------------')
@@ -545,6 +622,13 @@ if usuario == user_formatado:
                    cursor.execute(query_exclusao_confirmada)
                    conexao.commit()
 
+                   #Logs
+                   mensagem = f'O {usuario} excluiu o sistema: {guarda_informacao_e_nome}!'
+                    
+                   insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+                   cursor.execute(insert_log_cadastro)
+                   conexao.commit()
+
                    os.system('cls' if os.name == 'nt' else 'clear')
 
                    print('--------------------------------------------------------------------------------------------------------------------')
@@ -606,6 +690,13 @@ if usuario == user_formatado:
                    cursor.execute(query_exclusao_confirmada)
                    conexao.commit()
 
+                   #Logs
+                   mensagem = f'O {usuario} excluiu o sistema: {guarda_informacao_e_ip}!'
+                    
+                   insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+                   cursor.execute(insert_log_cadastro)
+                   conexao.commit()
+
                    os.system('cls' if os.name == 'nt' else 'clear')
                    print('--------------------------------------------------------------------------------------------------------------------')
                    print('--------------------------------------- Modúlo de Exclusão de Sistemas ---------------------------------------------')
@@ -662,6 +753,13 @@ if usuario == user_formatado:
                cursor.execute(query_insert_usuario)
                conexao.commit()
 
+               #Logs
+               mensagem = f'O {usuario} cadastrou um novo usuário com o seguinte nome: {guarda_nome_cadastro}!'
+                    
+               insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+               cursor.execute(insert_log_cadastro)
+               conexao.commit()
+
                os.system('cls' if os.name == 'nt' else 'clear')
                print('--------------------------------------------------------------------------------------------------------------------')
                print('--------------------------------------- Modúlo de Cadastro de Usuários ---------------------------------------------')
@@ -713,6 +811,13 @@ if usuario == user_formatado:
                   
                   query_delete_usuario = f'DELETE FROM tb_usuarios WHERE nome_usuario = "{guarda_nome_usuario_exclu}"'
                   cursor.execute(query_delete_usuario)
+                  conexao.commit()
+
+                  #Logs
+                  mensagem = f'O {usuario} excluiu o seguinte usuário: {guarda_nome_usuario_exclu}!'
+                    
+                  insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+                  cursor.execute(insert_log_cadastro)
                   conexao.commit()
 
                   os.system('cls' if os.name == 'nt' else 'clear')
