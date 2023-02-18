@@ -24,3 +24,9 @@ CREATE TABLE IF NOT EXISTS tb_tipo_sistema (
     nome_tipo_sistema VARCHAR(50) NOT NULL,
 PRIMARY KEY (id_tipo_sistema)
 );
+
+CREATE TABLE IF NOT EXISTS tb_logs (
+	id_log INT(11) AUTO_INCREMENT,
+    descricao_log VARCHAR(255) NOT NULL,
+PRIMARY KEY (id_log)
+);
