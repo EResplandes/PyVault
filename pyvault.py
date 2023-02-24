@@ -62,9 +62,10 @@ if usuario == user_formatado:
         print('1) Cadastrar novo sistema')
         print('2) Verificar informações de sistema')
         print('3) Atualizar informação de sistema')   
-        print('4) Exclusão de sistema') if query_busca_tipo_usuario_resultado_formatado == 'Administrador' else print('')
-        print('5) Cadastro de Usuário') if query_busca_tipo_usuario_resultado_formatado == 'Administrador' else print('')
-        print('6) Exclusão de Usuário') if query_busca_tipo_usuario_resultado_formatado == 'Administrador' else print('')
+        print('4) Exclusão de sistema')
+        print('5) Cadastro de Usuário')
+        print('6) Exclusão de Usuário')
+        print('7) Verifica todos sistemas')
         print('')
         opcao_selecionada = input('Selecione umas das opções:')
         
@@ -107,11 +108,12 @@ if usuario == user_formatado:
             print('2) Sistema')
             print('3) Máquina Virtual')
             print('4) Servidor')
+            print('5) Banco de dados')
             print('')
             tipo_sistema = input('Digite o tipo do sistema: ')
             
             #Executando o cadastro do sistema
-            cadastra_sistema = f'CALL sp_insert_sistema ("{nome_sistema}", "{ip_sistema}", "{usuario_sistema}" , "{senha_sistema}", "{tipo_sistema}")'
+            cadastra_sistema = f'INSERT INTO tb_sistemas (nome_sistema, ip_sistema, usuario_sistema, senha_sistema, id_tipo_sistema) VALUES ("{nome_sistema}", "{ip_sistema}", "{usuario_sistema}" , "{senha_sistema}", "{tipo_sistema}")'
             cursor.execute(cadastra_sistema) 
             conexao.commit()
 
@@ -135,6 +137,8 @@ if usuario == user_formatado:
                      print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
                      print('--------------------------------------------------------------------------------------------------------------------')
                      print('Sistema cadastrado com sucesso!')
+                     print('')
+                     input('Pressione Enter para sair...')
             else:
                     
                     os.system('cls' if os.name == 'nt' else 'clear')
@@ -142,6 +146,8 @@ if usuario == user_formatado:
                     print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('Erro no cadastro, tente novamente!')
+                    print('')
+                    input('Pressione Enter para sair...')
         #Fim Modúlo de Cadastro de Sistema 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
         #Modúlo de Verificação de Sistema
@@ -149,7 +155,7 @@ if usuario == user_formatado:
 
             os.system('cls' if os.name == 'nt' else 'clear')
             print('--------------------------------------------------------------------------------------------------------------------')
-            print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+            print('-------------------------------------- Modúlo de Verificação de Sistemas -------------------------------------------')
             print('--------------------------------------------------------------------------------------------------------------------')
             print('')
             print('Filtros disponíveis: ')
@@ -163,7 +169,7 @@ if usuario == user_formatado:
                 
                 os.system('cls' if os.name == 'nt' else 'clear')
                 print('--------------------------------------------------------------------------------------------------------------------')
-                print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+                print('-------------------------------------- Modúlo de Verificação de Sistemas -------------------------------------------')
                 print('--------------------------------------------------------------------------------------------------------------------')
                 busca_nome = input('Digite o nome do sistema: ')
 
@@ -193,7 +199,7 @@ if usuario == user_formatado:
 
                 os.system('cls' if os.name == 'nt' else 'clear')
                 print('--------------------------------------------------------------------------------------------------------------------')
-                print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+                print('-------------------------------------- Modúlo de Verificação de Sistemas -------------------------------------------')
                 print('--------------------------------------------------------------------------------------------------------------------')
                 print('')
                 print('Aqui estão as informações do sistema: ')
@@ -202,8 +208,8 @@ if usuario == user_formatado:
                 print(f'Ip do Sistema: {query_busca_ip_sistema_resultado_formatado}')
                 print(f'Usuário do Sistema: {query_busca_usuario_sistema_resultado_formatado}')
                 print(f'Senha do Sistema: {query_busca_senha_sistema_resultado_formatado}')
-
-
+                print('')
+                input('Pressione Enter para sair...')
                #Inserir Log de Cadastro
                 mensagem = f'O {usuario} buscou as informações do sistema: {busca_nome}!'
                 insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
@@ -214,7 +220,7 @@ if usuario == user_formatado:
                  
                 os.system('cls' if os.name == 'nt' else 'clear')
                 print('--------------------------------------------------------------------------------------------------------------------')
-                print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+                print('-------------------------------------- Modúlo de Verificação de Sistemas -------------------------------------------')
                 print('--------------------------------------------------------------------------------------------------------------------')
                 print('') 
                 busca_ip = input('Digite o ip do sistema: ')
@@ -244,7 +250,7 @@ if usuario == user_formatado:
 
                 os.system('cls' if os.name == 'nt' else 'clear')
                 print('--------------------------------------------------------------------------------------------------------------------')
-                print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+                print('-------------------------------------- Modúlo de Verificação de Sistemas -------------------------------------------')
                 print('--------------------------------------------------------------------------------------------------------------------')
                 print('')
                 print('Aqui estão as informações do sistema: ')
@@ -253,7 +259,9 @@ if usuario == user_formatado:
                 print(f'Ip do Sistema: {query_busca_ip_sistema_resultado_formatado}')
                 print(f'Usuário do Sistema: {query_busca_usuario_sistema_resultado_formatado}')
                 print(f'Senha do Sistema: {query_busca_senha_sistema_resultado_formatado}')
-                
+                print('')
+                input('Pressione Enter para sair...')
+
                 #Inserir Log de Cadastro
                 mensagem = f'O {usuario} buscou as informações do sistema: {busca_ip}!'
                 insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
@@ -263,9 +271,11 @@ if usuario == user_formatado:
             else:
                 os.system('cls' if os.name == 'nt' else 'clear')
                 print('--------------------------------------------------------------------------------------------------------------------')
-                print('--------------------------------------- Modúlo de Cadastro de Sistemas ---------------------------------------------')
+                print('-------------------------------------- Modúlo de Verificação de Sistemas -------------------------------------------')
                 print('--------------------------------------------------------------------------------------------------------------------')
                 print('Opção Inválida!')
+                print('')
+                input('Pressione Enter para sair...')
         #Fim Módulo de Verificação de Sistema 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
          #Modúlo de Atualização de Sistema
@@ -332,6 +342,8 @@ if usuario == user_formatado:
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('')
                     print('Atualização realizada com sucesso!')
+                    print('')
+                    input('Pressione Enter para sair...')
 
                  elif (guarda_parametro_atualizacao == '2'):
                     
@@ -359,6 +371,8 @@ if usuario == user_formatado:
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('')
                     print('Atualização realizada com sucesso!')
+                    print('')
+                    input('Pressione Enter para sair...')
 
                  elif (guarda_parametro_atualizacao == '3'):
                     os.system('cls' if os.name == 'nt' else 'clear')
@@ -386,6 +400,8 @@ if usuario == user_formatado:
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('')
                     print('Atualização realizada com sucesso!')
+                    print('')
+                    input('Pressione Enter para sair...')
 
                  elif (guarda_parametro_atualizacao == '4'):
                     print('--------------------------------------------------------------------------------------------------------------------')
@@ -411,6 +427,8 @@ if usuario == user_formatado:
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('')
                     print('Atualização realizada com sucesso!')
+                    print('')
+                    input('Pressione Enter para sair...')
 
                  else:
                     os.system('cls' if os.name == 'nt' else 'clear')
@@ -419,6 +437,8 @@ if usuario == user_formatado:
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('')
                     print('Parametrô inválido!')
+                    print('')
+                    input('Pressione Enter para sair...')
                    
 
             elif (guarda_opcao_a == '2'):
@@ -471,6 +491,8 @@ if usuario == user_formatado:
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('')
                     print('Atualização realizada com sucesso!')
+                    print('')
+                    input('Pressione Enter para sair...')
 
                  elif (guarda_parametro_atualizacao == '2'):
                     
@@ -498,6 +520,8 @@ if usuario == user_formatado:
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('')
                     print('Atualização realizada com sucesso!')
+                    print('')
+                    input('Pressione Enter para sair...')
 
                  elif (guarda_parametro_atualizacao == '3'):
                     
@@ -525,6 +549,8 @@ if usuario == user_formatado:
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('')
                     print('Atualização realizada com sucesso!')
+                    print('')
+                    input('Pressione Enter para sair...')
 
                  elif (guarda_parametro_atualizacao == '4'):
                     
@@ -553,6 +579,8 @@ if usuario == user_formatado:
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('')
                     print('Atualização realizada com sucesso!')
+                    print('')
+                    input('Pressione Enter para sair...')
 
 
                  else:
@@ -561,8 +589,9 @@ if usuario == user_formatado:
                     print('------------------------------------ Modúlo de Atualização de Informações ------------------------------------------')
                     print('--------------------------------------------------------------------------------------------------------------------')
                     print('')
-
                     print('Parametrô inválido!')
+                    print('')
+                    input('Pressione Enter para sair...')
                    
             else:
                 os.system('cls' if os.name == 'nt' else 'clear')
@@ -571,6 +600,8 @@ if usuario == user_formatado:
                 print('--------------------------------------------------------------------------------------------------------------------')
                 print('')
                 print('Atualização realizada com sucesso!')
+                print('')
+                input('Pressione Enter para sair...')
 
 
 # Fim do Modúlo de Atualização de Sistema
@@ -636,6 +667,8 @@ if usuario == user_formatado:
                    print('--------------------------------------------------------------------------------------------------------------------')
                    print('')
                    print('A exclusão foi realizada com sucesso!')
+                   print('')
+                   input('Pressione Enter para sair...')
                    
 
                elif (guarda_confirmacao_exclusao == 'n'):
@@ -646,6 +679,8 @@ if usuario == user_formatado:
                    print('--------------------------------------------------------------------------------------------------------------------')
                    print('')
                    print('Operação cancelada!')
+                   print('')
+                   input('Pressione Enter para sair...')
 
                else:
 
@@ -655,6 +690,8 @@ if usuario == user_formatado:
                   print('--------------------------------------------------------------------------------------------------------------------')
                   print('')
                   print('Opção inválida!')
+                  print('')
+                  input('Pressione Enter para sair...')
 
             elif (guarda_opcao_e == '2'):
 
@@ -703,6 +740,8 @@ if usuario == user_formatado:
                    print('--------------------------------------------------------------------------------------------------------------------')
                    print('')
                    print('A exclusão foi realizada com sucesso!')
+                   print('')
+                   input('Pressione Enter para sair...')
                    
 
                elif (guarda_confirmacao_exclusao == 'n'):
@@ -713,6 +752,8 @@ if usuario == user_formatado:
                    print('--------------------------------------------------------------------------------------------------------------------')
                    print('')
                    print('Operação cancelada!')
+                   print('')
+                   input('Pressione Enter para sair...')
 
                else:
 
@@ -722,6 +763,8 @@ if usuario == user_formatado:
                   print('--------------------------------------------------------------------------------------------------------------------')
                   print('')
                   print('Opção inválida!')
+                  print('')
+                  input('Pressione Enter para sair...')
 
             else:
                 os.system('cls' if os.name == 'nt' else 'clear')
@@ -730,6 +773,8 @@ if usuario == user_formatado:
                 print('--------------------------------------------------------------------------------------------------------------------')
                 print('')
                 print('Opção inválida!')
+                print('')
+                input('Pressione Enter para sair...')
 
 # Fim do modúlo de exclusão de sistemas
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
@@ -766,6 +811,8 @@ if usuario == user_formatado:
                print('--------------------------------------------------------------------------------------------------------------------')
                print('')
                print(f'Usuário {guarda_nome_cadastro} foi cadastrado com sucesso!')
+               print('')
+               input('Pressione Enter para sair...')
 
             else:
                os.system('cls' if os.name == 'nt' else 'clear')
@@ -774,6 +821,8 @@ if usuario == user_formatado:
                print('--------------------------------------------------------------------------------------------------------------------')
                print('')
                print('A senhas não coincidem iguais!')
+               print('')
+               input('Pressione Enter para sair...')
 # Fim Modúlo de Cadastro Usuário
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # Início do Modúlo de Exclusão de Usuário
@@ -826,6 +875,8 @@ if usuario == user_formatado:
                   print('--------------------------------------------------------------------------------------------------------------------')
                   print('')
                   print(f'O usuário {guarda_nome_usuario_exclu} foi excluído com sucesso!')
+                  print('')
+                  input('Pressione Enter para sair...')
 
                elif (confirmacao_exclusao_usuario == "n"):
                   
@@ -835,6 +886,8 @@ if usuario == user_formatado:
                   print('--------------------------------------------------------------------------------------------------------------------')
                   print('')
                   print('Operação cancelada')
+                  print('')
+                  input('Pressione Enter para sair...')
                   
                else:
                   
@@ -844,6 +897,8 @@ if usuario == user_formatado:
                   print('--------------------------------------------------------------------------------------------------------------------')
                   print('')
                   print('Opção Inválida')
+                  print('')
+                  input('Pressione Enter para sair...')
 
             else:
                os.system('cls' if os.name == 'nt' else 'clear')
@@ -852,8 +907,35 @@ if usuario == user_formatado:
                print('--------------------------------------------------------------------------------------------------------------------')
                print('')
                print('Usuário não encontrado!')
+               print('')
+               input('Pressione Enter para sair...')
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
          #Menu principal - Caso não tenha escolhido nenhuma das opções
+        elif (opcao_selecionada == '7') and (query_busca_tipo_usuario_resultado_formatado == 'Administrador'):
+
+         query_consulta_sistemas = f'SELECT * FROM tb_sistemas'
+         cursor.execute(query_consulta_sistemas)
+         query_consulta_sistemas_resultado = cursor.fetchall()
+
+         #Logs
+         mensagem = f'O {usuario} verificou a informação de todos os sistemas!'
+                    
+         insert_log_cadastro = f'INSERT INTO tb_logs (descricao_log) VALUES ("{mensagem}")'
+         cursor.execute(insert_log_cadastro)
+         conexao.commit()
+
+         os.system('cls' if os.name == 'nt' else 'clear')
+         print('--------------------------------------------------------------------------------------------------------------------')
+         print('-------------------------------------- Modúlo de Verificação de Sistemas -------------------------------------------')
+         print('--------------------------------------------------------------------------------------------------------------------')
+         print('')
+         for row in query_consulta_sistemas_resultado: 
+            print(row) 
+         print('')
+         input('Pressione Enter para sair...')
+
+         
+
         else:
             print('Opção inválida!')
 
