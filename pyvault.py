@@ -62,9 +62,9 @@ if usuario == user_formatado:
         print('1) Cadastrar novo sistema')
         print('2) Verificar informações de sistema')
         print('3) Atualizar informação de sistema')   
-        print('4) Exclusão de sistema')
-        print('5) Cadastro de Usuário')
-        print('6) Exclusão de Usuário')
+        print('4) Exclusão de sistema') if query_busca_tipo_usuario_resultado_formatado == 'Administrador' else print('')
+        print('5) Cadastro de Usuário') if query_busca_tipo_usuario_resultado_formatado == 'Administrador' else print('')
+        print('6) Exclusão de Usuário') if query_busca_tipo_usuario_resultado_formatado == 'Administrador' else print('')
         print('')
         opcao_selecionada = input('Selecione umas das opções:')
         
